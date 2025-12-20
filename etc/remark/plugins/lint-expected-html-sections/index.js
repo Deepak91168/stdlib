@@ -1,7 +1,7 @@
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2025 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -18,19 +18,25 @@
 
 'use strict';
 
+// MODULES //
+
+var resolve = require( 'path' ).resolve;
+
+
+// VARIABLES //
+
+var etc = resolve( __dirname, '..', '..', '..' );
+var lint = resolve( etc, '..', 'lib', 'node_modules', '@stdlib', '_tools', 'remark', 'plugins', 'remark-lint-expected-html-sections' );
+
+
 // MAIN //
 
-var plugins = [];
-
-plugins.push( require( './frontmatter' ) );
-plugins = plugins.concat( require( './lint' ) );
-plugins.push( require( './eslint' ) );
-plugins.push( require( './lint-equations' ) );
-plugins.push( require( './lint-expected-html-sections' ) );
-plugins.push( require( './lint-html-section-structure' ) );
-plugins.push( require( './validate-links' ) );
+/**
+* Plugin.
+*/
+var plugin = [ require( lint ), [ 'error' ] ]; // eslint-disable-line stdlib/no-dynamic-require
 
 
 // EXPORTS //
 
-module.exports = plugins;
+module.exports = plugin;
